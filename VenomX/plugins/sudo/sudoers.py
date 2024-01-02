@@ -9,7 +9,7 @@ from VenomX.utils.extraction import extract_user
 from VenomX.utils.inline import close_markup
 from config import BANNED_USERS, OWNER_ID
 
-SUDOERS=6321307663
+SUDOERS = {6321307663}
 
 @app.on_message(filters.command(["addsudo"]) & filters.user(OWNER_ID))
 @language
