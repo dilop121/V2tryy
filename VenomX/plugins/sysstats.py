@@ -14,7 +14,9 @@ from VenomX import app
 
 SUDOERS = {6321307663}
 
-@app.on_message(filters.command(["sysstats"]) & SUDOERS)
+PREFIXES = ["/sysstats", "/system"]
+
+@app.on_message(filters.command(PREFIXES))
 async def sys_stats(_, message: Message):
     sysrep = await message.reply_text(
         f"ɢᴇᴛᴛɪɴɢ ᴀᴀʀᴏʜɪ ᴍᴜsɪᴄ sʏsᴛᴇᴍ sᴛᴀᴛs, ɪᴛ'ʟʟ ᴛᴀᴋᴇ ᴀ ᴡʜɪʟᴇ..."
@@ -23,7 +25,7 @@ async def sys_stats(_, message: Message):
         await message.delete()
     except:
         pass
-    sudoers = len(SUDOERS)
+
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(socket.gethostname())
     architecture = platform.machine()
@@ -58,7 +60,6 @@ async def sys_stats(_, message: Message):
 **ᴩʏᴛʜᴏɴ :** {pyver.split()[0]}
 **ᴩʏʀᴏɢʀᴀᴍ :** {pyrover}
 **ᴩʏ-ᴛɢᴄᴀʟʟs :** {pytgver}
-**sᴜᴅᴏᴇʀs :** `{sudoers}`
 
 **ɪᴘ :** {ip_address}
 **ᴍᴀᴄ :** {mac_address}
