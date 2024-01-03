@@ -16,6 +16,7 @@ PREFIXES = ["/stats", "/system"]
 
 @app.on_message(filters.command(PREFIXES))
 async def sys_stats(_, message: Message):
+    print("Command triggered")  # Add this line to check if the command is triggered
     sysrep = await message.reply_text(
         f"ɢᴇᴛᴛɪɴɢ ᴀᴀʀᴏʜɪ ᴍᴜsɪᴄ sʏsᴛᴇᴍ sᴛᴀᴛs, ɪᴛ'ʟʟ ᴛᴀᴋᴇ ᴀ ᴡʜɪʟᴇ..."
     )
