@@ -12,7 +12,7 @@ from config import BANNED_USERS, PING_IMG_URL
 
 # Define the repo and close buttons
 repo_button = InlineKeyboardButton("• ʀᴇᴘᴏ •", callback_data="gib_source")
-close_button = InlineKeyboardButton("Close", callback_data="close")
+close_button = InlineKeyboardButton("• ᴄʟᴏsᴇ •", callback_data="close")
 
 
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
