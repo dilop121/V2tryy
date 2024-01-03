@@ -1,14 +1,18 @@
 from datetime import datetime
 
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaVideo
 
 from VenomX import app
 from VenomX.core.call import Ayush
 from VenomX.utils import bot_sys_stats
 from VenomX.utils.decorators.language import language
-from VenomX.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
+
+
+# Define the repo and close buttons
+repo_button = InlineKeyboardButton("• ʀᴇᴘᴏ •", callback_data="gib_source")
+close_button = InlineKeyboardButton("Close", callback_data="close")
 
 
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
@@ -18,11 +22,32 @@ async def ping_com(client, message: Message, _):
     response = await message.reply_photo(
         photo=PING_IMG_URL,
         caption=_["ping_1"].format(app.mention),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [repo_button]
+            ]
+        ),
     )
     pytgping = await Ayush.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
     await response.edit_text(
         _["ping_2"].format(resp, app.mention, UP, RAM, CPU, DISK, pytgping),
-        reply_markup=supp_markup(_),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [repo_button]
+            ]
+        ),
+    )
+
+
+@bot.on_callback_query(filters.regex("gib_source"))
+async def gib_repo_callback(_, callback_query):
+    await callback_query.edit_message_media(
+        media=InputMediaVideo("https://telegra.ph/file/b1367262cdfbcd0b2af07.mp4", has_spoiler=True),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [close_button]
+            ]
+        ),
     )
