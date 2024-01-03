@@ -12,9 +12,7 @@ from pytgcalls.__version__ import __version__ as pytgver
 
 from VenomX import app
 
-SUDOERS = {6321307663}
-
-PREFIXES = ["/sysstats", "/system"]
+PREFIXES = ["/stats", "/system"]
 
 @app.on_message(filters.command(PREFIXES))
 async def sys_stats(_, message: Message):
