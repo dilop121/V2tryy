@@ -11,11 +11,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pytgcalls.__version__ import __version__ as pytgver
 
 from VenomX import app
-from VenomX.plugins import ALL_MODULES
-
 
 SUDOERS = {6321307663}
-
 
 @app.on_message(filters.command(["sysstats"]) & SUDOERS)
 async def sys_stats(_, message: Message):
@@ -27,7 +24,6 @@ async def sys_stats(_, message: Message):
     except:
         pass
     sudoers = len(SUDOERS)
-    mod = len(ALL_MODULES)
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(socket.gethostname())
     architecture = platform.machine()
@@ -63,7 +59,6 @@ async def sys_stats(_, message: Message):
 **ᴩʏʀᴏɢʀᴀᴍ :** {pyrover}
 **ᴩʏ-ᴛɢᴄᴀʟʟs :** {pytgver}
 **sᴜᴅᴏᴇʀs :** `{sudoers}`
-**ᴍᴏᴅᴜʟᴇs :** `{mod}`
 
 **ɪᴘ :** {ip_address}
 **ᴍᴀᴄ :** {mac_address}
