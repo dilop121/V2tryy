@@ -101,9 +101,7 @@ async def gib_repo_callback(_, callback_query):
         ),
     )
 
-InlineKeyboardButton(
-                    text=_["BACK_BUTTON"],
-                    callback_data=f"settings_back_helper")
+close_button = InlineKeyboardButton("• ᴄʟᴏsᴇ •", callback_data="close")
 
 
 
