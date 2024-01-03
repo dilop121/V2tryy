@@ -89,6 +89,31 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         )
 
 
+@app.on_callback_query(filters.regex("gib_source"))
+async def gib_repo_callback(_, callback_query):
+    try:
+        await callback_query.answer()
+    except:
+        pass
+
+    media = InputMediaVideo("https://telegra.ph/file/b1367262cdfbcd0b2af07.mp4", has_spoiler=True)
+    close_button = InlineKeyboardButton(text="Close", callback_data="close")
+    keyboard = InlineKeyboardMarkup([[close_button]])
+
+    if callback_query.message.chat.type == ChatType.PRIVATE:
+        await app.resolve_peer(OWNER_ID)
+        owner = OWNER_ID
+        buttons = private_panel(_)
+        await callback_query.edit_message_text(
+            _["start_2"].format(callback_query.from_user.mention, app.mention),
+            reply_markup=keyboard,
+        )
+    else:
+        buttons = setting_markup(_)
+        await callback_query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+
+
+
 @app.on_callback_query(
     filters.regex(
         pattern=r"^(SEARCHANSWER|PLAYMODEANSWER|PLAYTYPEANSWER|AUTHANSWER|ANSWERVOMODE|VOTEANSWER|PM|AU|VM)$"
