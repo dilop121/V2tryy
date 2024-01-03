@@ -22,11 +22,6 @@ async def ping_com(client, message: Message, _):
     response = await message.reply_photo(
         photo=PING_IMG_URL,
         caption=_["ping_1"].format(app.mention),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [repo_button]
-            ]
-        ),
     )
     pytgping = await Ayush.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
@@ -41,7 +36,7 @@ async def ping_com(client, message: Message, _):
     )
 
 
-@bot.on_callback_query(filters.regex("gib_source"))
+@app.on_callback_query(filters.regex("gib_source"))
 async def gib_repo_callback(_, callback_query):
     await callback_query.edit_message_media(
         media=InputMediaVideo("https://telegra.ph/file/b1367262cdfbcd0b2af07.mp4", has_spoiler=True),
